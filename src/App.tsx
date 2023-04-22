@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Container, Box, styled } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { DarkModeSwitch } from "react-toggle-dark-mode";
@@ -8,8 +8,8 @@ import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 import PersonIcon from "@mui/icons-material/Person";
 import LaptopIcon from "@mui/icons-material/Laptop";
 import EmailIcon from "@mui/icons-material/Email";
-import About from "./pages/about";
-// import Projects from "./pages/projects";
+
+import { Outlet, useNavigate, useLocation } from "react-router-dom";
 
 import "./App.css";
 
@@ -23,10 +23,14 @@ const App = () => {
     palette: { mode: isDarkTheme ? "dark" : "light" },
   });
 
-  const [value, setValue] = useState("about");
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const [value, setValue] = useState(location.pathname.split("/")[1]);
 
   const handleChange = (_event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
+    navigate(`/${newValue}`);
   };
 
   const customStyle: React.CSSProperties & customCardShadowProp = {
@@ -55,8 +59,8 @@ const App = () => {
         >
           <DarkModeSwitch onChange={toggleTheme} checked={isDarkTheme} />
         </Box>
-        <Container sx={{ height: 1 }}>
-          <About />
+        <Container>
+          <Outlet />
         </Container>
       </div>
 

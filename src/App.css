@@ -1,5 +1,6 @@
 body,
 html {
+  height: 100vh;
   font-family: "Poppins", sans-serif !important;
   overflow: auto;
 }
