@@ -1,0 +1,16 @@
+body,
+html {
+  height: 100vh;
+  font-family: "Poppins", sans-serif !important;
+  overflow: auto;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+#root {
+  height: 90vh;
+}
