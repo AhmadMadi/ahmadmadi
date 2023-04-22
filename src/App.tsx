@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Container, Box, styled } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { DarkModeSwitch } from "react-toggle-dark-mode";
