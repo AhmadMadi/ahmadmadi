@@ -83,10 +83,11 @@ const CustomCard = styled(Card)`
 const Wrapper = styled("div")`
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: repeat(5, 1fr);
+  grid-template-rows: auto;
   grid-column-gap: 10px;
   grid-row-gap: 10px;
   height: 100%;
+  margin-bottom: 4rem;
 
   .name {
     grid-area: 1 / 1 / 2 / 2;

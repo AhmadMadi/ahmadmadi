@@ -1,8 +1,13 @@
 import React, { useState } from "react";
-import { Container, Box } from "@mui/material";
+import { Container, Box, styled } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { DarkModeSwitch } from "react-toggle-dark-mode";
 import CssBaseLine from "@mui/material/CssBaseline";
+import BottomNavigation from "@mui/material/BottomNavigation";
+import BottomNavigationAction from "@mui/material/BottomNavigationAction";
+import PersonIcon from "@mui/icons-material/Person";
+import LaptopIcon from "@mui/icons-material/Laptop";
+import EmailIcon from "@mui/icons-material/Email";
 import About from "./pages/about";
 // import Projects from "./pages/projects";
 
@@ -18,9 +23,15 @@ const App = () => {
     palette: { mode: isDarkTheme ? "dark" : "light" },
   });
 
+  const [value, setValue] = useState("about");
+
+  const handleChange = (event: React.SyntheticEvent, newValue: string) => {
+    setValue(newValue);
+  };
+
   const customStyle: React.CSSProperties & customCardShadowProp = {
     "--card-shadow": isDarkTheme
-      ? "0px 5px 20px 1px rgba(0,12,145,0.3)"
+      ? "0px 7px 10px 3px rgba(0,12,145,0.5)"
       : "0px 7px 20px -6px rgba(0, 146, 199, 0.4)",
     height: "100%",
   };
@@ -48,8 +59,27 @@ const App = () => {
           <About />
         </Container>
       </div>
+
+      <CustomBottomNavigation value={value} onChange={handleChange}>
+        <BottomNavigationAction value="about" icon={<PersonIcon />} />
+        <BottomNavigationAction value="projects" icon={<LaptopIcon />} />
+        <BottomNavigationAction value="contact" icon={<EmailIcon />} />
+      </CustomBottomNavigation>
     </ThemeProvider>
   );
 };
 
 export default App;
+
+const CustomBottomNavigation = styled(BottomNavigation)`
+  width: 100%;
+  position: fixed;
+  bottom: -1px;
+  -webkit-box-shadow: 0px -1px 11px -3px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0px -1px 11px -3px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px -1px 11px -3px rgba(0, 0, 0, 0.2);
+
+  @media (min-width: 900px) {
+    display: none;
+  }
+`;
