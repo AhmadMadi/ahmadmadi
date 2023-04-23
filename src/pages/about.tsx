@@ -1,4 +1,16 @@
-import { Card, Box, styled } from "@mui/material";
+import { Card, Box, Grid, styled, Link, LinearProgress } from "@mui/material";
+import LocationOnIcon from "@mui/icons-material/LocationOn";
+import PhoneIcon from "@mui/icons-material/Phone";
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
+
+import Timeline from "@mui/lab/Timeline";
+import TimelineItem from "@mui/lab/TimelineItem";
+import TimelineSeparator from "@mui/lab/TimelineSeparator";
+import TimelineContent from "@mui/lab/TimelineContent";
+import TimelineDot from "@mui/lab/TimelineDot";
+import TimelineOppositeContent, {
+  timelineOppositeContentClasses,
+} from "@mui/lab/TimelineOppositeContent";
 
 const About = () => {
   return (
@@ -11,58 +23,153 @@ const About = () => {
       </Box>
       <Box className="infoCard">
         <CustomCard>
-          <h4>Info</h4>
-          <br />
+          <h4 style={{ marginBottom: "1rem" }}>{"<Info />"}</h4>
           <p>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Numquam
-            consequuntur nobis impedit fugiat fuga deleniti tempore rerum
-            cupiditate soluta earum similique vel repellat quasi quia voluptate,
-            voluptatum ipsa, architecto necessitatibus?
+            I am a Software Engineer from Lebanon. I have a passion for learning
+            new technologies and building cool stuff. I am currently working as
+            a Software Engineer at Washmen.
           </p>
+          <Grid container sx={{ mt: "1rem", gap: "0.2rem" }}>
+            <LocationOnIcon sx={{ fontSize: "1.1rem" }} />
+            <span style={{ fontSize: "0.9rem" }}>Istanbul, Turkey</span>
+          </Grid>
+          <Grid container sx={{ mt: "1rem", gap: "0.2rem" }}>
+            <PhoneIcon sx={{ fontSize: "1rem" }} />
+            <span style={{ fontSize: "0.9rem" }}>
+              <Link underline="none" href="tel:+905521580988">
+                +90 552 158 09 88
+              </Link>
+            </span>
+          </Grid>
+          <Grid container sx={{ mt: "1rem", gap: "0.2rem" }}>
+            <LinkedInIcon sx={{ fontSize: "1.1rem" }} />
+            <span style={{ fontSize: "0.9rem" }}>
+              <Link
+                underline="none"
+                href="https://www.linkedin.com/in/ahmad-madi-0b2a85162/"
+                target="_blank"
+                rel="noopener"
+              >
+                Ahmad Madi
+              </Link>
+            </span>
+          </Grid>
         </CustomCard>
       </Box>
       <Box className="skillsCard">
         <CustomCard>
-          <h4>Skills</h4>
-          <br />
-          <p>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Numquam
-            consequuntur nobis impedit fugiat fuga deleniti tempore rerum
-            cupiditate soluta earum similique vel repellat quasi quia voluptate,
-            voluptatum ipsa, architecto necessitatibus? Lorem ipsum, dolor sit
-            amet consectetur adipisicing elit. Numquam consequuntur nobis
-            impedit fugiat fuga deleniti tempore rerum cupiditate soluta earum
-            similique vel repellat quasi quia voluptate, voluptatum ipsa,
-            architecto necessitatibus? Lorem ipsum, dolor sit amet consectetur
-            adipisicing elit. Numquam consequuntur nobis impedit fugiat fuga
-            deleniti tempore rerum cupiditate soluta earum similique vel
-            repellat quasi quia voluptate, voluptatum ipsa, architecto
-            necessitatibus?
-          </p>
+          <h4 style={{ marginBottom: "1rem" }}>{"<Skills />"}</h4>
+          <Grid
+            direction={"column"}
+            container
+            sx={{ mt: "1rem", gap: "0.2rem" }}
+          >
+            <h5>HTML</h5>
+            <LinearProgress variant="determinate" value={70} />
+          </Grid>
+          <Grid
+            direction={"column"}
+            container
+            sx={{ mt: "1rem", gap: "0.2rem" }}
+          >
+            <h5>CSS</h5>
+            <LinearProgress variant="determinate" value={60} />
+          </Grid>
+          <Grid
+            direction={"column"}
+            container
+            sx={{ mt: "1rem", gap: "0.2rem" }}
+          >
+            <h5>Javascript</h5>
+            <LinearProgress variant="determinate" value={70} />
+          </Grid>
+          <Grid
+            direction={"column"}
+            container
+            sx={{ mt: "1rem", gap: "0.2rem" }}
+          >
+            <h5>NodeJS</h5>
+            <LinearProgress variant="determinate" value={70} />
+          </Grid>
+          <Grid
+            direction={"column"}
+            container
+            sx={{ mt: "1rem", gap: "0.2rem" }}
+          >
+            <h5>ReactJS</h5>
+            <LinearProgress variant="determinate" value={60} />
+          </Grid>
+          <Grid
+            direction={"column"}
+            container
+            sx={{ mt: "1rem", gap: "0.2rem" }}
+          >
+            <h5>Java/SprintBoot</h5>
+            <LinearProgress variant="determinate" value={30} />
+          </Grid>
         </CustomCard>
       </Box>
       <Box className="workExperienceCard">
         <CustomCard>
-          <h4>Work</h4>
-          <br />
-          <p>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Numquam
-            consequuntur nobis impedit fugiat fuga deleniti tempore rerum
-            cupiditate soluta earum similique vel repellat quasi quia voluptate,
-            voluptatum ipsa, architecto necessitatibus?
-          </p>
+          <h4 style={{ marginBottom: "1rem" }}>{"<Work />"}</h4>
+          <Timeline
+            sx={{
+              [`& .${timelineOppositeContentClasses.root}`]: {
+                flex: 0,
+              },
+              p: 0,
+            }}
+          >
+            <TimelineItem sx={{}}>
+              <TimelineOppositeContent
+                sx={{
+                  p: 0,
+                  width: "7rem",
+                }}
+              ></TimelineOppositeContent>
+              <TimelineSeparator>
+                <TimelineDot sx={{}} />
+              </TimelineSeparator>
+              <TimelineContent sx={{ fontFamily: "Poppins" }}>
+                Washmen
+                <br />
+                <span style={{ fontSize: "0.9rem" }}>Software Engineer</span>
+                <br />
+                <span style={{ fontSize: "0.7rem" }}>2019 - present</span>
+              </TimelineContent>
+            </TimelineItem>
+          </Timeline>
         </CustomCard>
       </Box>
       <Box className="educationCard">
         <CustomCard>
-          <h4>Education</h4>
+          <h4>{"<Education />"}</h4>
           <br />
-          <p>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Numquam
-            consequuntur nobis impedit fugiat fuga deleniti tempore rerum
-            cupiditate soluta earum similique vel repellat quasi quia voluptate,
-            voluptatum ipsa, architecto necessitatibus?
-          </p>
+          <Timeline
+            sx={{
+              [`& .${timelineOppositeContentClasses.root}`]: {
+                flex: 0,
+              },
+              p: 0,
+            }}
+          >
+            <TimelineItem sx={{}}>
+              <TimelineOppositeContent
+                sx={{
+                  p: 0,
+                  width: "7rem",
+                }}
+              ></TimelineOppositeContent>
+              <TimelineSeparator>
+                <TimelineDot sx={{}} />
+              </TimelineSeparator>
+              <TimelineContent sx={{ fontFamily: "Poppins" }}>
+                Lebanese Internal University
+                <br />
+                <span style={{ fontSize: "0.7rem" }}>2018 - 2021</span>
+              </TimelineContent>
+            </TimelineItem>
+          </Timeline>
         </CustomCard>
       </Box>
     </Wrapper>

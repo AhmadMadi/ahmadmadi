@@ -1,17 +1,13 @@
-import React, { useState } from "react";
-import { Container, Box, styled } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { Box } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { DarkModeSwitch } from "react-toggle-dark-mode";
 import CssBaseLine from "@mui/material/CssBaseline";
-import BottomNavigation from "@mui/material/BottomNavigation";
-import BottomNavigationAction from "@mui/material/BottomNavigationAction";
-import PersonIcon from "@mui/icons-material/Person";
-import LaptopIcon from "@mui/icons-material/Laptop";
-import EmailIcon from "@mui/icons-material/Email";
 
-import { Outlet, useNavigate, useLocation } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 
 import "./App.css";
+import Home from "./pages/home";
 
 type customCardShadowProp = {
   "--card-shadow": string;
@@ -23,19 +19,13 @@ const App = () => {
     palette: { mode: isDarkTheme ? "dark" : "light" },
   });
 
-  const navigate = useNavigate();
   const location = useLocation();
 
-  const [value, setValue] = useState(location.pathname.split("/")[1]);
-
-  const handleChange = (_event: React.SyntheticEvent, newValue: string) => {
-    setValue(newValue);
-    navigate(`/${newValue}`);
-  };
+  const [isHomeScreen, setIsHomeScreen] = useState(false);
 
   const customStyle: React.CSSProperties & customCardShadowProp = {
     "--card-shadow": isDarkTheme
-      ? "0px 7px 10px 3px rgba(0,12,145,0.5)"
+      ? "0px 7px 10px 3px rgba(0,12,145,0.25)"
       : "0px 7px 20px -6px rgba(0, 146, 199, 0.4)",
     height: "100%",
   };
@@ -43,6 +33,17 @@ const App = () => {
   const toggleTheme = () => {
     setIsDarkTheme(!isDarkTheme);
   };
+
+  const ToRender = () => {
+    return isHomeScreen ? <Home /> : <Outlet />;
+  };
+
+  useEffect(() => {
+    location.pathname.split("/")[1] === ""
+      ? setIsHomeScreen(true)
+      : setIsHomeScreen(false);
+    console.log(location.pathname.split("/")[1]);
+  }, [location.pathname]);
 
   return (
     <ThemeProvider theme={theme}>
@@ -59,31 +60,10 @@ const App = () => {
         >
           <DarkModeSwitch onChange={toggleTheme} checked={isDarkTheme} />
         </Box>
-        <Container>
-          <Outlet />
-        </Container>
+        <ToRender />
       </div>
-
-      <CustomBottomNavigation value={value} onChange={handleChange}>
-        <BottomNavigationAction value="about" icon={<PersonIcon />} />
-        <BottomNavigationAction value="projects" icon={<LaptopIcon />} />
-        <BottomNavigationAction value="contact" icon={<EmailIcon />} />
-      </CustomBottomNavigation>
     </ThemeProvider>
   );
 };
 
 export default App;
-
-const CustomBottomNavigation = styled(BottomNavigation)`
-  width: 100%;
-  position: fixed;
-  bottom: -1px;
-  -webkit-box-shadow: 0px -1px 11px -3px rgba(0, 0, 0, 0.2);
-  -moz-box-shadow: 0px -1px 11px -3px rgba(0, 0, 0, 0.2);
-  box-shadow: 0px -1px 11px -3px rgba(0, 0, 0, 0.2);
-
-  @media (min-width: 900px) {
-    display: none;
-  }
-`;

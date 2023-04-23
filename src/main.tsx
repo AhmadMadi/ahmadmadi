@@ -7,6 +7,7 @@ import NotFound from "./pages/notFound.tsx";
 import Projects from "./pages/projects.tsx";
 import About from "./pages/about.tsx";
 import Contact from "./pages/contact.tsx";
+import Layout from "./layout.tsx";
 
 const router = createBrowserRouter([
   {
@@ -16,15 +17,15 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/about",
-        element: <About />,
+        element: <Layout PageElement={About} />,
       },
       {
         path: "/projects",
-        element: <Projects />,
+        element: <Layout PageElement={Projects} />,
       },
       {
         path: "/contact",
-        element: <Contact />,
+        element: <Layout PageElement={Contact} />,
       },
     ],
   },
